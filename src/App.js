@@ -1,16 +1,14 @@
 import GlobalStyles from './GlobalStyles';
+import Panels from './Panels';
+import Btns from './Btns';
 
 function App() {
 	return (
-		<div>
+		<>
 			<GlobalStyles />
-			<h1>Hello</h1>
-			<ul>
-				<li>list1</li>
-				<li>list2</li>
-				<li>list3</li>
-			</ul>
-		</div>
+			<Panels />
+			<Btns />
+		</>
 	);
 }
 
