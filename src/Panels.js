@@ -26,17 +26,24 @@ const Article = styled.article`
 	justify-content: center;
 	align-items: center;
 	font-size: 100px;
+
+	&.on {
+		background: pink;
+	}
 `;
 
-function Panels({ Scrolled, num, distance }) {
+function Panels({ Scrolled, num, distance, Active }) {
 	return (
 		<Section perspective={distance}>
 			{Array(num)
 				.fill()
 				.map((_, idx) => {
+					let on = '';
+					if (idx === Active) on = 'on';
 					return (
 						<Article
 							key={idx}
+							className={on}
 							style={{
 								transform: `translateZ(${-distance * idx + Scrolled}px)`,
 							}}>
