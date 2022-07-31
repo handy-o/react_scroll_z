@@ -10,7 +10,7 @@ const Section = styled.section`
 	margin-left: -600px;
 	margin-top: -350px;
 	z-index: 1;
-	perspective: 2300px;
+	perspective: 5000px;
 `;
 
 const Article = styled.article`
@@ -26,18 +26,20 @@ const Article = styled.article`
 	align-items: center;
 `;
 
-function Panels({ Scrolled }) {
+function Panels({ Scrolled, num }) {
 	return (
 		<Section>
-			{[0, 1, 2, 3, 4].map((num) => {
-				return (
-					<Article
-						key={num}
-						style={{ transform: `translateZ(${-5000 * num + Scrolled}px)` }}>
-						{num}
-					</Article>
-				);
-			})}
+			{Array(num)
+				.fill()
+				.map((_, idx) => {
+					return (
+						<Article
+							key={idx}
+							style={{ transform: `translateZ(${-5000 * idx + Scrolled}px)` }}>
+							{idx + 1}
+						</Article>
+					);
+				})}
 		</Section>
 	);
 }

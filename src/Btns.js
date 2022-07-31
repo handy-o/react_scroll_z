@@ -15,12 +15,16 @@ const ScrollBtns = styled.ul`
 	}
 `;
 
-function Btns({ setIndex }) {
+function Btns({ setIndex, num }) {
 	return (
 		<ScrollBtns>
-			{[0, 1, 2, 3, 4].map((num) => {
-				return <li key={num} onClick={() => setIndex(num)}>{`Box${num}`}</li>;
-			})}
+			{Array(num)
+				.fill()
+				.map((_, idx) => {
+					return (
+						<li key={idx} onClick={() => setIndex(idx)}>{`Box${idx + 1}`}</li>
+					);
+				})}
 		</ScrollBtns>
 	);
 }

@@ -7,6 +7,7 @@ import Anime from './asset/anime';
 function App() {
 	const [Scrolled, setScrolled] = useState(0);
 	const [Index, setIndex] = useState(0);
+	const num = 5;
 
 	useEffect(() => {
 		window.addEventListener('scroll', () => {
@@ -33,8 +34,8 @@ function App() {
 	return (
 		<>
 			<GlobalStyles />
-			<Panels Scrolled={Scrolled} />
-			<Btns setIndex={setIndex} />
+			<Panels Scrolled={Scrolled} num={num} />
+			<Btns setIndex={setIndex} num={num} />
 		</>
 	);
 }
