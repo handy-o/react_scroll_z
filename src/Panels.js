@@ -22,18 +22,18 @@ const Article = styled.article`
 	opacity: 0.3;
 	background: blue;
 	color: #fff;
-	justify-contents: center;
+	justify-content: center;
 	align-items: center;
 `;
 
-function Panels() {
+function Panels({ Scrolled }) {
 	return (
 		<Section>
 			{[0, 1, 2, 3, 4].map((num) => {
 				return (
 					<Article
 						key={num}
-						style={{ transform: `translateZ(${-5000 * num}px)` }}>
+						style={{ transform: `translateZ(${-5000 * num + Scrolled}px)` }}>
 						{num}
 					</Article>
 				);

@@ -15,14 +15,12 @@ const ScrollBtns = styled.ul`
 	}
 `;
 
-function Btns() {
+function Btns({ setIndex }) {
 	return (
 		<ScrollBtns>
-			<li className='on'>box1</li>
-			<li>box2</li>
-			<li>box3</li>
-			<li>box4</li>
-			<li>box5</li>
+			{[0, 1, 2, 3, 4].map((num) => {
+				return <li key={num} onClick={() => setIndex(num)}>{`Box${num}`}</li>;
+			})}
 		</ScrollBtns>
 	);
 }
