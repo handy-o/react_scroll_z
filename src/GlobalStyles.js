@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
   a {text-decoration:none;}
 
   body {
-    height:25000px
+    height: ${(props) => props.num * props.distance + 'px'}
   }
 `;
 

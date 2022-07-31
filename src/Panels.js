@@ -10,7 +10,7 @@ const Section = styled.section`
 	margin-left: -600px;
 	margin-top: -350px;
 	z-index: 1;
-	perspective: 5000px;
+	perspective: ${(props) => props.perspective + 'px'};
 `;
 
 const Article = styled.article`
@@ -22,20 +22,24 @@ const Article = styled.article`
 	opacity: 0.3;
 	background: blue;
 	color: #fff;
+	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-size: 100px;
 `;
 
-function Panels({ Scrolled, num }) {
+function Panels({ Scrolled, num, distance }) {
 	return (
-		<Section>
+		<Section perspective={distance}>
 			{Array(num)
 				.fill()
 				.map((_, idx) => {
 					return (
 						<Article
 							key={idx}
-							style={{ transform: `translateZ(${-5000 * idx + Scrolled}px)` }}>
+							style={{
+								transform: `translateZ(${-distance * idx + Scrolled}px)`,
+							}}>
 							{idx + 1}
 						</Article>
 					);

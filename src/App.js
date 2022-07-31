@@ -1,25 +1,34 @@
 import GlobalStyles from './GlobalStyles';
 import Panels from './Panels';
 import Btns from './Btns';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Anime from './asset/anime';
 
 function App() {
 	const [Scrolled, setScrolled] = useState(0);
 	const [Index, setIndex] = useState(0);
-	const num = 5;
+	const [Active, setActive] = useState(0); // 해당 영역에서 index값 활성화
+	const num = useRef(5);
+	const distance = useRef(5000);
+	const speed = useRef(500);
 
 	useEffect(() => {
 		window.addEventListener('scroll', () => {
 			setScrolled(window.scrollY);
+
+			for (let i = 0; i < num.current; i++) {
+				if (window.scrollY >= i * distance.current) {
+					setActive(i);
+				}
+			}
 		});
 	}, []);
 
 	useEffect(() => {
 		new Anime(window, {
 			prop: 'scroll',
-			value: 5000 * Index,
-			duration: 500,
+			value: distance.current * Index,
+			duration: speed.current,
 		});
 	}, [Index]);
 
@@ -29,13 +38,23 @@ function App() {
 	}, [Scrolled]);
 	// 인덱스 확인
 	useEffect(() => {
-		console.log(Index);
+		//console.log(Index);
 	}, [Index]);
+
+	// Active값 확인
+	useEffect(() => {
+		//console.log(Active);
+	}, [Active]);
+
 	return (
 		<>
-			<GlobalStyles />
-			<Panels Scrolled={Scrolled} num={num} />
-			<Btns setIndex={setIndex} num={num} />
+			<GlobalStyles num={num.current} distance={distance.current} />
+			<Panels
+				Scrolled={Scrolled}
+				num={num.current}
+				distance={distance.current}
+			/>
+			<Btns setIndex={setIndex} num={num.current} Active={Active} />
 		</>
 	);
 }
